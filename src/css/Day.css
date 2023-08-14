@@ -1,0 +1,31 @@
+#dayContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1rem 1fr 1rem;
+  border: 2px solid grey;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#dayDay {
+  grid-row: 1;
+  grid-column: 1/-1;
+  text-align: center;
+}
+#dayIcon {
+  grid-row: 2;
+  grid-column: 1/-1;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+}
+#dayMax {
+  grid-row: 3;
+  grid-column: 1;
+  text-align: center;
+}
+#dayMin {
+  grid-row: 3;
+  grid-column: 2;
+  text-align: center;
+}
