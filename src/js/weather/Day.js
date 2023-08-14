@@ -1,12 +1,6 @@
-import Pubsub from "../Pubsub";
 import "../../css/Day.css";
-import svgRainy from "../../img/cloud-drizzle.svg";
 
 export default class Day {
-  #output;
-
-  #weatherObject;
-
   constructor() {
     // DOM
     this.container = document.createElement("div");
@@ -33,12 +27,10 @@ export default class Day {
   }
 
   render(data) {
-    console.log(data);
     this.imgIcon.src = data.day.condition.icon;
-    this.divDayOfWeek.innerText = new Date(data.date).toLocaleDateString(
-      "en-US",
-      { weekday: "long" },
-    );
+    this.divDayOfWeek.innerText = new Date(
+      data.date_epoch * 1000,
+    ).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
     this.divTemperatureMAX.innerText = `${data.day.maxtemp_c}°`;
     this.divTemperatureMIN.innerText = `${data.day.mintemp_c}°`;
   }

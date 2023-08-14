@@ -9,6 +9,13 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-warning-comments": [
+      "error",
+      {
+        "terms": ["todo", "fixme", "any other term"],
+        "location": "anywhere"
+      }
+    ],
     "no-plusplus": [
       "error",
       {
