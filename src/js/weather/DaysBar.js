@@ -1,6 +1,6 @@
 import Pubsub from "../Pubsub";
 import Day from "./Day";
-import "../../css/DaysBar.css";
+import "../../css/modules/DaysBar.css";
 
 export default class DaysBar {
   #output;

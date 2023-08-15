@@ -1,4 +1,4 @@
-import "../../css/Day.css";
+import "../../css/modules/Day.css";
 
 export default class Day {
   constructor() {
@@ -30,7 +30,7 @@ export default class Day {
     this.imgIcon.src = data.day.condition.icon;
     this.divDayOfWeek.innerText = new Date(
       data.date_epoch * 1000,
-    ).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+    ).toLocaleDateString("en-US", { weekday: "short", timeZone: "UTC" });
     this.divTemperatureMAX.innerText = `${data.day.maxtemp_c}°`;
     this.divTemperatureMIN.innerText = `${data.day.mintemp_c}°`;
   }

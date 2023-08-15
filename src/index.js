@@ -1,11 +1,10 @@
 import queryWeatherAPI from "./js/weather/API";
-import DaysBar from "./js/weather/DaysBar";
 import Pubsub from "./js/Pubsub";
-import Header from "./js/weather/Header";
+import "./css/font.css";
+import "./css/style.css";
+import App from "./js/App";
 
 const body = document.querySelector("body");
-const bar = new DaysBar();
-const header = new Header();
-body.append(header.container, bar.container);
-
+const app = new App();
+body.append(app.container);
 queryWeatherAPI().then((data) => Pubsub.emit("render", data));
