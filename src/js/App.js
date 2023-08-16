@@ -1,5 +1,6 @@
 import Header from "./weather/Header";
 import DaysBar from "./weather/DaysBar";
+import Graph from "./Graph";
 import queryWeatherAPI from "./weather/API";
 import Pubsub from "./Pubsub";
 import "../css/modules/App.css";
@@ -10,9 +11,15 @@ export default class App {
     this.container = document.createElement("div");
     this.container.id = "appContainer";
     this.header = new Header();
+    this.graph = new Graph();
     this.daysBar = new DaysBar();
-    this.container.append(this.header.container, this.daysBar.container);
+    this.container.append(
+      this.header.container,
+      this.graph.container,
+      this.daysBar.container,
+    );
     this.apiCall();
+    this.bindEvents();
   }
 
   apiCall() {
@@ -23,7 +30,11 @@ export default class App {
     });
   }
 
-  bindEvents() {}
+  bindEvents() {
+    Pubsub.on("apiCall", () => {
+      this.apiCall();
+    });
+  }
 
   render() {}
 }

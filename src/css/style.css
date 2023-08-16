@@ -3,4 +3,8 @@
 body {
   background: var(--bgDark);
   color: var(--textLight);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

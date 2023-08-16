@@ -11,7 +11,7 @@ export default class DaysBar {
     // DOM
     this.container = document.createElement("div");
     this.container.id = "container";
-    this.day1 = new Day();
+    this.day1 = new Day(true);
     this.day2 = new Day();
     this.day3 = new Day();
     this.container.append(

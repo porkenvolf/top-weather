@@ -2,7 +2,8 @@ import "../../css/modules/Day.css";
 import Pubsub from "../Pubsub";
 
 export default class Day {
-  constructor() {
+  constructor(current = false) {
+    this.isCurrentDay = current;
     // DOM
     this.container = document.createElement("div");
     this.container.id = "dayContainer";
@@ -42,17 +43,21 @@ export default class Day {
 
   bindEvents() {
     this.container.addEventListener("click", () => {
-      const data = {
-        alreadyProcessed: true,
-        icon: this.cachedData.day.condition.icon,
-        temp_c: this.cachedData.day.avgtemp_c,
-        humidity: this.cachedData.day.avghumidity,
-        wind_kph: this.cachedData.day.maxwind_kph,
-        daily_chance_of_rain: this.cachedData.day.daily_chance_of_rain,
-        day: this.cachedData.date,
-        condition: this.cachedData.day.condition.text,
-      };
-      Pubsub.emit("renderHeader", data);
+      if (this.isCurrentDay) {
+        Pubsub.emit("apiCall");
+      } else {
+        const data = {
+          alreadyProcessed: true,
+          icon: this.cachedData.day.condition.icon,
+          temp_c: this.cachedData.day.avgtemp_c,
+          humidity: this.cachedData.day.avghumidity,
+          wind_kph: this.cachedData.day.maxwind_kph,
+          daily_chance_of_rain: this.cachedData.day.daily_chance_of_rain,
+          day: this.cachedData.date,
+          condition: this.cachedData.day.condition.text,
+        };
+        Pubsub.emit("renderHeader", data);
+      }
     });
   }
 }
