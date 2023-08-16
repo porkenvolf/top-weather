@@ -1,5 +1,6 @@
 #appContainer {
   border: 2px solid red;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   width: min(700px, 100%);

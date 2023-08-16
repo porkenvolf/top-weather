@@ -7,4 +7,3 @@ import App from "./js/App";
 const body = document.querySelector("body");
 const app = new App();
 body.append(app.container);
-queryWeatherAPI().then((data) => Pubsub.emit("render", data));

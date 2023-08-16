@@ -25,7 +25,7 @@ export default class DaysBar {
   }
 
   bindEvents() {
-    Pubsub.on("render", (data) => {
+    Pubsub.on("renderDays", (data) => {
       this.render(data);
     });
   }
