@@ -5,10 +5,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1rem 1fr 1rem;
-  border: 2px solid grey;
-  padding: 5px;
+  padding: 5px; /* 
+  border: 2px solid grey; */
   border-radius: 10px;
   gap: 5px;
+  cursor: pointer;
 }
 
 #dayDay {
@@ -36,4 +37,7 @@
   text-align: center;
   font-size: 0.8rem;
   color: var(--textMid);
+}
+.activated {
+  background: var(--bgMid);
 }

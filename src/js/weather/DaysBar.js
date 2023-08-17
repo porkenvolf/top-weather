@@ -22,6 +22,12 @@ export default class DaysBar {
   }
 
   bindEvents() {
+    Pubsub.on("activateDay", (index) => {
+      this.days.forEach((element) => {
+        element.container.classList.remove("activated");
+      });
+      this.days[index].container.classList.add("activated");
+    });
     Pubsub.on("renderDaysBar", () => {
       this.render(Cache.cachedData);
     });

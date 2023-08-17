@@ -1,7 +1,6 @@
 @import url(../variables.css);
 
 #appContainer {
-  border: 2px solid red;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

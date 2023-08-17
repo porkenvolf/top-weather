@@ -8,6 +8,9 @@ export default class Day {
     // DOM
     this.container = document.createElement("div");
     this.container.id = "dayContainer";
+    if (current) {
+      this.container.classList.add("activated");
+    }
 
     this.imgIcon = document.createElement("img");
     this.imgIcon.id = "dayIcon";
@@ -45,9 +48,8 @@ export default class Day {
   bindEvents() {
     this.container.addEventListener("click", () => {
       Pubsub.emit("renderHeader", this.index);
-    });
-    this.container.addEventListener("click", () => {
       Pubsub.emit("renderGraph", this.index);
+      Pubsub.emit("activateDay", this.index);
     });
   }
 }
