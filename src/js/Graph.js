@@ -1,20 +1,12 @@
 import Chart from "chart.js/auto";
 import Pubsub from "./Pubsub";
 import Cache from "./weather/Cache";
+import "../css/modules/Graph.css";
 
 export default class Graph {
   constructor() {
     this.container = document.createElement("div");
-
-    this.data = [
-      { year: 2010, count: 10 },
-      { year: 2011, count: 20 },
-      { year: 2012, count: 15 },
-      { year: 2013, count: 25 },
-      { year: 2014, count: 22 },
-      { year: 2015, count: 30 },
-      { year: 2016, count: 28 },
-    ];
+    this.container.id = "graphContainer";
     this.bindEvents();
   }
 
@@ -50,6 +42,10 @@ export default class Graph {
             tension: 0.2,
           },
         ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
       },
     });
   }
