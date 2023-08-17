@@ -70,14 +70,26 @@ export default class Graph {
                 type: "line",
                 mode: "horizontal",
                 scaleID: "x",
-                borderColor: "rgb(255, 99, 132)",
-                borderWidth: lineNow, // TODO rendering nowLine
+                borderColor: "orange",
+                borderWidth: lineNow,
                 value: lineNowValue,
               },
             },
           },
           legend: {
             display: false,
+          },
+        },
+        annotations: {
+          line1: {
+            /* label: {
+              enabled: true,
+              display: true,
+              content: "NOW", 
+              color: "white",
+              backgroundColor: "orange",
+              position: "center",
+            }, */
           },
         },
       },
