@@ -3,10 +3,6 @@ import Day from "./Day";
 import "../../css/modules/DaysBar.css";
 
 export default class DaysBar {
-  #output;
-
-  #weatherObject;
-
   constructor() {
     // DOM
     this.container = document.createElement("div");

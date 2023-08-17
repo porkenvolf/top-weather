@@ -18,8 +18,8 @@ export default class App {
       this.graph.container,
       this.daysBar.container,
     );
-    this.apiCall();
     this.bindEvents();
+    this.apiCall();
   }
 
   apiCall() {

@@ -46,14 +46,19 @@ export default class Day {
       if (this.isCurrentDay) {
         Pubsub.emit("apiCall");
       } else {
+        const temp_c = Math.floor(this.cachedData.day.avgtemp_c);
+        const day = new Date(this.cachedData.date).toLocaleDateString("en-US", {
+          weekday: "long",
+          timeZone: "UTC",
+        });
         const data = {
           alreadyProcessed: true,
           icon: this.cachedData.day.condition.icon,
-          temp_c: this.cachedData.day.avgtemp_c,
+          temp_c,
           humidity: this.cachedData.day.avghumidity,
           wind_kph: this.cachedData.day.maxwind_kph,
           daily_chance_of_rain: this.cachedData.day.daily_chance_of_rain,
-          day: this.cachedData.date,
+          day,
           condition: this.cachedData.day.condition.text,
         };
         Pubsub.emit("renderHeader", data);
