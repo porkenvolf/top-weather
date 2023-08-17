@@ -1,5 +1,6 @@
 import Pubsub from "../Pubsub";
 import Day from "./Day";
+import Cache from "./Cache";
 import "../../css/modules/DaysBar.css";
 
 export default class DaysBar {
@@ -21,8 +22,8 @@ export default class DaysBar {
   }
 
   bindEvents() {
-    Pubsub.on("renderDays", (data) => {
-      this.render(data);
+    Pubsub.on("renderDaysBar", () => {
+      this.render(Cache.cachedData);
     });
   }
 

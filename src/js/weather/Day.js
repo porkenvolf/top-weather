@@ -1,4 +1,3 @@
-
 import "../../css/modules/Day.css";
 import Pubsub from "../Pubsub";
 
@@ -45,33 +44,10 @@ export default class Day {
 
   bindEvents() {
     this.container.addEventListener("click", () => {
-      if (this.isCurrentDay) {
-        Pubsub.emit("apiCall");
-      } else {
-        console.log(this.cachedData)
-        const temp_c = Math.floor(this.cachedData.day.avgtemp_c); // TODO currently it doesnt affect the current (lol) day
-        const day = new Date(this.cachedData.date).toLocaleDateString("en-US", {
-          weekday: "long",
-          timeZone: "UTC",
-        });
-        const data = {
-          alreadyProcessed: true,
-          icon: this.cachedData.day.condition.icon,
-          temp_c,
-          humidity: this.cachedData.day.avghumidity,
-          wind_kph: this.cachedData.day.maxwind_kph,
-          daily_chance_of_rain: this.cachedData.day.daily_chance_of_rain,
-          day,
-          condition: this.cachedData.day.condition.text,
-        };
-        Pubsub.emit("renderHeader", data);
-      }
-    }
-    
-    );
-  this.container.addEventListener('click',()=>{
-        Pubsub.emit('renderGraph',this.index)
-      })
-    
+      Pubsub.emit("renderHeader", this.index);
+    });
+    this.container.addEventListener("click", () => {
+      Pubsub.emit("renderGraph", this.index);
+    });
   }
 }

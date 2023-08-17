@@ -1,4 +1,5 @@
 import Pubsub from "../Pubsub";
+import Cache from "./Cache";
 import "../../css/modules/Header.css";
 
 export default class Header {
@@ -40,31 +41,45 @@ export default class Header {
   }
 
   bindEvents() {
-    Pubsub.on("renderHeader", (data) => {
-      // console.log(data); // TODO data formatin should be done in one place
-      if (!data.alreadyProcessed) {
-        const { icon } = data.forecast.forecastday[0].day.condition;
-        const { temp_c } = data.current;
-        const { humidity } = data.current;
-        const { wind_kph } = data.current;
-        const { daily_chance_of_rain } = data.forecast.forecastday[0].day;
-        const condition = data.forecast.forecastday[0].day.condition.text;
-        const day = new Date(data.current.last_updated).toLocaleDateString(
-          "en-US",
-          { weekday: "long", timeZone: "UTC" },
-        );
-        this.render({
-          icon,
-          temp_c,
-          humidity,
-          wind_kph,
-          daily_chance_of_rain,
-          day,
-          condition,
-        });
+    Pubsub.on("renderHeader", (index) => {
+      // This data is accessed the same way irrespective of index
+      const { icon } =
+        Cache.cachedData.forecast.forecastday[index].day.condition;
+      const { daily_chance_of_rain } =
+        Cache.cachedData.forecast.forecastday[index].day;
+      const condition =
+        Cache.cachedData.forecast.forecastday[index].day.condition.text;
+      const day = new Date(
+        Cache.cachedData.forecast.forecastday[index].date,
+      ).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+
+      // This data is accessed differently if index === 0
+      let temp_c;
+      let humidity;
+      let wind_kph;
+      if (index === 0) {
+        // index 0 denotes the Current day, as opposed to a forecasted day
+        temp_c = Math.floor(Cache.cachedData.current.temp_c);
+        humidity = Cache.cachedData.current.humidity;
+        wind_kph = Cache.cachedData.current.wind_kph;
       } else {
-        this.render(data);
+        // if index !== 0 it must access data from the forcast section
+        temp_c = Math.floor(
+          Cache.cachedData.forecast.forecastday[index].day.avgtemp_c,
+        );
+        humidity = Cache.cachedData.forecast.forecastday[index].day.avghumidity;
+        wind_kph = Cache.cachedData.forecast.forecastday[index].day.maxwind_kph;
       }
+
+      this.render({
+        icon,
+        temp_c,
+        humidity,
+        wind_kph,
+        daily_chance_of_rain,
+        day,
+        condition,
+      });
     });
   }
 

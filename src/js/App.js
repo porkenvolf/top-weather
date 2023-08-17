@@ -19,25 +19,22 @@ export default class App {
       this.graph.container,
       this.daysBar.container,
     );
-    this.bindEvents();
-    this.apiCall();
+    App.bindEvents();
+    App.apiCall();
   }
 
-  apiCall() {
+  static apiCall() {
     queryWeatherAPI().then((data) => {
       Cache.cachedData = data;
-      Pubsub.emit("updateDaysForecast", data);
-      Pubsub.emit("renderHeader", data);
-      Pubsub.emit("renderDays", data);
+      Pubsub.emit("renderHeader", 0);
+      Pubsub.emit("renderDaysBar");
       Pubsub.emit("renderGraph", 0);
     });
   }
 
-  bindEvents() {
+  static bindEvents() {
     Pubsub.on("apiCall", () => {
-      this.apiCall();
+      App.apiCall();
     });
   }
-
-  render() {}
 }
