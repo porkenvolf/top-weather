@@ -41,7 +41,7 @@ export default class Header {
 
   bindEvents() {
     Pubsub.on("renderHeader", (data) => {
-      // console.log(data); // TODO render day must be formated always
+      // console.log(data); // TODO data formatin should be done in one place
       if (!data.alreadyProcessed) {
         const { icon } = data.forecast.forecastday[0].day.condition;
         const { temp_c } = data.current;

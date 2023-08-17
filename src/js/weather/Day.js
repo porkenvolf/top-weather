@@ -1,8 +1,10 @@
+
 import "../../css/modules/Day.css";
 import Pubsub from "../Pubsub";
 
 export default class Day {
-  constructor(current = false) {
+  constructor(index, current = false) {
+    this.index = index;
     this.isCurrentDay = current;
     // DOM
     this.container = document.createElement("div");
@@ -46,7 +48,8 @@ export default class Day {
       if (this.isCurrentDay) {
         Pubsub.emit("apiCall");
       } else {
-        const temp_c = Math.floor(this.cachedData.day.avgtemp_c);
+        console.log(this.cachedData)
+        const temp_c = Math.floor(this.cachedData.day.avgtemp_c); // TODO currently it doesnt affect the current (lol) day
         const day = new Date(this.cachedData.date).toLocaleDateString("en-US", {
           weekday: "long",
           timeZone: "UTC",
@@ -63,6 +66,12 @@ export default class Day {
         };
         Pubsub.emit("renderHeader", data);
       }
-    });
+    }
+    
+    );
+  this.container.addEventListener('click',()=>{
+        Pubsub.emit('renderGraph',this.index)
+      })
+    
   }
 }

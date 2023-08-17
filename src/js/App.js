@@ -3,6 +3,7 @@ import DaysBar from "./weather/DaysBar";
 import Graph from "./Graph";
 import queryWeatherAPI from "./weather/API";
 import Pubsub from "./Pubsub";
+import Cache from "./weather/Cache";
 import "../css/modules/App.css";
 
 export default class App {
@@ -24,9 +25,11 @@ export default class App {
 
   apiCall() {
     queryWeatherAPI().then((data) => {
-      this.cachedWeather = data;
+      Cache.cachedData = data;
+      Pubsub.emit("updateDaysForecast", data);
       Pubsub.emit("renderHeader", data);
       Pubsub.emit("renderDays", data);
+      Pubsub.emit("renderGraph", 0);
     });
   }
 
