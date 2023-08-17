@@ -45,8 +45,8 @@ export default class Header {
       // This data is accessed the same way irrespective of index
       const { icon } =
         Cache.cachedData.forecast.forecastday[index].day.condition;
-      const { daily_chance_of_rain } =
-        Cache.cachedData.forecast.forecastday[index].day;
+      const chanceOfRain =
+        Cache.cachedData.forecast.forecastday[index].day.daily_chance_of_rain;
       const condition =
         Cache.cachedData.forecast.forecastday[index].day.condition.text;
       const day = new Date(
@@ -54,29 +54,29 @@ export default class Header {
       ).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
 
       // This data is accessed differently if index === 0
-      let temp_c;
+      let tempC;
       let humidity;
-      let wind_kph;
+      let windKPH;
       if (index === 0) {
         // index 0 denotes the Current day, as opposed to a forecasted day
-        temp_c = Math.floor(Cache.cachedData.current.temp_c);
+        tempC = Math.floor(Cache.cachedData.current.temp_c);
         humidity = Cache.cachedData.current.humidity;
-        wind_kph = Cache.cachedData.current.wind_kph;
+        windKPH = Cache.cachedData.current.wind_kph;
       } else {
         // if index !== 0 it must access data from the forcast section
-        temp_c = Math.floor(
+        tempC = Math.floor(
           Cache.cachedData.forecast.forecastday[index].day.avgtemp_c,
         );
         humidity = Cache.cachedData.forecast.forecastday[index].day.avghumidity;
-        wind_kph = Cache.cachedData.forecast.forecastday[index].day.maxwind_kph;
+        windKPH = Cache.cachedData.forecast.forecastday[index].day.maxwind_kph;
       }
 
       this.render({
         icon,
-        temp_c,
+        tempC,
         humidity,
-        wind_kph,
-        daily_chance_of_rain,
+        windKPH,
+        chanceOfRain,
         day,
         condition,
       });
@@ -85,10 +85,10 @@ export default class Header {
 
   render(data) {
     this.imgIcon.src = data.icon;
-    this.divTemperature.innerText = `${data.temp_c}°`;
+    this.divTemperature.innerText = `${data.tempC}°`;
     this.divHumidity.innerText = `Humidity: ${data.humidity}%`;
-    this.divWindSpeed.innerText = `Wind speed: ${data.wind_kph}`; // TODO units
-    this.divChanceRain.innerText = `Chance of rain: ${data.daily_chance_of_rain}%`;
+    this.divWindSpeed.innerText = `Wind speed: ${data.windKPH}`;
+    this.divChanceRain.innerText = `Chance of rain: ${data.chanceOfRain}%`;
     this.divDay.innerText = data.day;
     this.divCondition.innerText = data.condition;
   }

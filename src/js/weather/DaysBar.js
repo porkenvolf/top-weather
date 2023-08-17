@@ -6,12 +6,12 @@ import "../../css/modules/DaysBar.css";
 export default class DaysBar {
   days = [];
 
-  constructor() {
+  constructor(amount) {
     // DOM
     this.container = document.createElement("div");
     this.container.id = "container";
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < amount; i++) {
       const isCurrentDay = i === 0;
       this.days.push(new Day(i, isCurrentDay));
       this.container.append(this.days[i].container);

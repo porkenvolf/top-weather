@@ -13,7 +13,7 @@ export default class App {
     this.container.id = "appContainer";
     this.header = new Header();
     this.graph = new Graph();
-    this.daysBar = new DaysBar();
+    this.daysBar = new DaysBar(8);
     this.container.append(
       this.header.container,
       this.graph.container,

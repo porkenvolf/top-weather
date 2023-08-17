@@ -1,5 +1,11 @@
 @import url("./variables.css");
+@import url("./scrollbar.css");
 
+* {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
 body {
   background: var(--bgDark);
   color: var(--textLight);

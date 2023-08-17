@@ -1,6 +1,7 @@
 @import url("../variables.css");
 
 #dayContainer {
+  flex: 1 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1rem 1fr 1rem;

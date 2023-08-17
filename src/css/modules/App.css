@@ -1,9 +1,11 @@
+@import url(../variables.css);
+
 #appContainer {
   border: 2px solid red;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  width: min(700px, 100%);
+  width: min(var(--minWidth), 100%);
   padding: 10px;
   gap: 10px;
 }
