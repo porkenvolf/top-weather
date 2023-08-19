@@ -30,6 +30,9 @@ export default class Header {
     this.divCondition = document.createElement("div");
     this.divCondition.id = "headerCondition";
 
+    this.divLocation = document.createElement("div");
+    this.divLocation.id = "headerLocation";
+
     this.SearchBar = new SearchBar();
 
     this.container.append(
@@ -41,6 +44,7 @@ export default class Header {
       this.divDay,
       this.divCondition,
       this.SearchBar.container,
+      this.divLocation,
     );
     this.bindEvents();
   }
@@ -56,7 +60,13 @@ export default class Header {
         Cache.cachedData.forecast.forecastday[index].day.condition.text;
       const day = new Date(
         Cache.cachedData.forecast.forecastday[index].date,
-      ).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+      ).toLocaleDateString("en-US", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        timeZone: "UTC",
+      });
+      const location = `${Cache.cachedData.location.name}, ${Cache.cachedData.location.country}`;
 
       // This data is accessed differently if index === 0
       let tempC;
@@ -84,6 +94,7 @@ export default class Header {
         chanceOfRain,
         day,
         condition,
+        location,
       });
     });
   }
@@ -96,5 +107,6 @@ export default class Header {
     this.divChanceRain.innerText = `Chance of rain: ${data.chanceOfRain}%`;
     this.divDay.innerText = data.day;
     this.divCondition.innerText = data.condition;
+    this.divLocation.innerText = data.location;
   }
 }

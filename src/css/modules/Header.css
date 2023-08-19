@@ -47,10 +47,16 @@
 
 #headerCondition {
   grid-column: -1;
-  grid-row: 3;
+  grid-row: 4;
   text-align: end;
 }
 
 #searchContainer {
   grid-column: 3/5;
+}
+
+#headerLocation {
+  grid-column: 3/5;
+  grid-row: 3;
+  text-align: end;
 }
