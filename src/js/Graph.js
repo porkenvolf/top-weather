@@ -34,9 +34,6 @@ export default class Graph {
   }
 
   render(data) {
-    console.log(data);
-    console.log(Cache.cachedData);
-    console.log(data.isCurrentDay);
     const lineNow = data.isCurrentDay ? 1 : 0;
     const lineNowValue = new Date(
       Cache.cachedData.current.last_updated,

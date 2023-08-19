@@ -1,12 +1,11 @@
 # top-weather
 
-TODO:
+TO DO:
 
+- location search bar, and detection
 - callApi every once in a while to refresh the data
-- FIX: canvas doesn't resize up
-- Graph dates, label, height, axis
-- Style for hovers, selected day, etc
 - units F
+- un chancho
 
 MAYBE:
 

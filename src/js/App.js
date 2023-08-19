@@ -11,6 +11,7 @@ export default class App {
     // DOM
     this.container = document.createElement("div");
     this.container.id = "appContainer";
+
     this.header = new Header();
     this.graph = new Graph();
     this.daysBar = new DaysBar(8);
@@ -23,8 +24,8 @@ export default class App {
     App.apiCall();
   }
 
-  static apiCall() {
-    queryWeatherAPI().then((data) => {
+  static apiCall(location) {
+    queryWeatherAPI(location).then((data) => {
       Cache.cachedData = data;
       Pubsub.emit("renderHeader", 0);
       Pubsub.emit("renderDaysBar");
@@ -33,8 +34,8 @@ export default class App {
   }
 
   static bindEvents() {
-    Pubsub.on("apiCall", () => {
-      App.apiCall();
+    Pubsub.on("apiCall", (location) => {
+      App.apiCall(location);
     });
   }
 }

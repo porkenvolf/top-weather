@@ -1,4 +1,5 @@
 import Pubsub from "../Pubsub";
+import SearchBar from "./SearchBar";
 import Cache from "./Cache";
 import "../../css/modules/Header.css";
 
@@ -28,6 +29,9 @@ export default class Header {
 
     this.divCondition = document.createElement("div");
     this.divCondition.id = "headerCondition";
+
+    this.SearchBar = new SearchBar();
+
     this.container.append(
       this.imgIcon,
       this.divTemperature,
@@ -36,6 +40,7 @@ export default class Header {
       this.divChanceRain,
       this.divDay,
       this.divCondition,
+      this.SearchBar.container,
     );
     this.bindEvents();
   }

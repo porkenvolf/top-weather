@@ -1,0 +1,17 @@
+@import url("../variables.css");
+#searchContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+input {
+  flex: 0 1 100%;
+  max-width: calc(var(--minWidth) / 2);
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 50px;
+  border: 2px solid var(--textDark);
+  background: var(--bgMid);
+  color: var(--textLight);
+  height: 1rem;
+  align-self: center;
+}
