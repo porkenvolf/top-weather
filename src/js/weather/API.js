@@ -1,7 +1,6 @@
 async function queryLocationAPI() {
   const requestLocation = await fetch("https://ipapi.co/json/");
   const parsedRequest = await requestLocation.json();
-  
   return parsedRequest.city;
 }
 export default async function queryWeatherAPI(_location) {
