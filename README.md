@@ -2,9 +2,9 @@
 
 TO DO:
 
-- location search bar, and detection
 - callApi every once in a while to refresh the data
 - units F
+- manage async errors
 - un chancho
 
 MAYBE:

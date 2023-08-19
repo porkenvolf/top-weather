@@ -1,5 +1,7 @@
 async function queryLocationAPI() {
-  const requestLocation = await fetch("http://ip-api.com/json/");
+  const requestLocation = await fetch("http://ip-api.com/json/", {
+    mode: "cors",
+  });
   const parsedRequest = await requestLocation.json();
   const location = parsedRequest.city;
   return location;
