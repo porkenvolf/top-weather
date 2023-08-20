@@ -27,7 +27,6 @@ export default class Graph {
           temp: element[`temp_${Cache.tempUnits}`],
         });
       });
-
       const isCurrentDay = index === 0;
       this.render({ parsedData, isCurrentDay });
     });
@@ -64,6 +63,7 @@ export default class Graph {
               callback(value) {
                 return `${value}°`;
               },
+              stepSize: 1,
             },
           },
         },
@@ -76,7 +76,6 @@ export default class Graph {
                 adjustScaleRange: true,
                 drawTime: "afterDatasetsDraw",
                 type: "line",
-                mode: "horizontal",
                 scaleID: "x",
                 borderColor: "orange",
                 borderWidth: lineNow,

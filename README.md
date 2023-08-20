@@ -2,7 +2,7 @@
 
 TO DO:
 
-- FIX: when changing units as the first action the 'now' line doesnt render
+- FIX: Y axis should only have whole degree ticks
 - callApi every once in a while to refresh the data
 - manage async errors
 - un chancho

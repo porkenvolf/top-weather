@@ -5,5 +5,5 @@ export default class Cache {
 
   static windUnits = "kph"; // or mph
 
-  static selectedDay = "0";
+  static selectedDay = 0;
 }
