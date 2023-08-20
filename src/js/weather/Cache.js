@@ -1,4 +1,5 @@
-export default class Cache{
+export default class Cache {
+  static cachedData;
 
-    static cachedData
+  static units = "si"; // or 'imperial'
 }

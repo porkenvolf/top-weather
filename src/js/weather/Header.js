@@ -1,5 +1,6 @@
 import Pubsub from "../Pubsub";
 import SearchBar from "./SearchBar";
+import UnitSelector from "./UnitSelector";
 import Cache from "./Cache";
 import "../../css/modules/Header.css";
 
@@ -33,7 +34,9 @@ export default class Header {
     this.divLocation = document.createElement("div");
     this.divLocation.id = "headerLocation";
 
-    this.SearchBar = new SearchBar();
+    this.searchBar = new SearchBar();
+
+    this.unitSelector = new UnitSelector();
 
     this.container.append(
       this.imgIcon,
@@ -43,14 +46,26 @@ export default class Header {
       this.divChanceRain,
       this.divDay,
       this.divCondition,
-      this.SearchBar.container,
+      this.searchBar.container,
       this.divLocation,
+      this.unitSelector.container,
     );
     this.bindEvents();
   }
 
   bindEvents() {
     Pubsub.on("renderHeader", (index) => {
+      // Determine units to use
+      let tempUnit;
+      let windUnit;
+      if (Cache.units === "si") {
+        tempUnit = "c";
+        windUnit = "kph";
+      } else {
+        tempUnit = "f";
+        windUnit = "mph";
+      }
+
       // This data is accessed the same way irrespective of index
       const { icon } =
         Cache.cachedData.forecast.forecastday[index].day.condition;
@@ -69,7 +84,7 @@ export default class Header {
       const location = `${Cache.cachedData.location.name}, ${Cache.cachedData.location.country}`;
 
       // This data is accessed differently if index === 0
-      let tempC;
+      let tempC; // TODO im changing units
       let humidity;
       let windKPH;
       if (index === 0) {

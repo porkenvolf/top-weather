@@ -1,0 +1,22 @@
+@import url("../variables.css");
+
+#unitSelectorContainer {
+  display: flex;
+  align-items: start;
+}
+
+#unitSelectorContainer div {
+  padding-left: 5px;
+  margin-top: 1.15rem;
+  color: var(--textDark);
+  cursor: pointer;
+}
+
+#unitSelectorContainer div:last-child::before {
+  content: "|";
+  color: var(--textDark);
+}
+
+#unitSelectorContainer .selected {
+  color: var(--textLight);
+}
