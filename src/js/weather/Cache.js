@@ -1,5 +1,9 @@
 export default class Cache {
   static cachedData;
 
-  static units = "si"; // or 'imperial'
+  static tempUnits = "c"; // or 'f'
+
+  static windUnits = "kph"; // or mph
+
+  static selectedDay = "0";
 }

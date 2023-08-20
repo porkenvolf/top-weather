@@ -1,5 +1,6 @@
 import Cache from "./Cache";
 import "../../css/modules/UnitSelector.css";
+import Pubsub from "../Pubsub";
 
 export default class UnitSelector {
   constructor() {
@@ -14,7 +15,7 @@ export default class UnitSelector {
 
     this.container.append(this.divC, this.divF);
 
-    if (Cache.units === "si") {
+    if (Cache.tempUnits === "c") {
       this.divC.classList.toggle("selected");
     } else this.divF.classList.toggle("selected");
 
@@ -25,12 +26,20 @@ export default class UnitSelector {
     this.divC.addEventListener("click", () => {
       this.divF.classList.remove("selected");
       this.divC.classList.add("selected");
-      Cache.units = "si";
+      Cache.tempUnits = "c";
+      Cache.windUnits = "kph";
+      Pubsub.emit("renderHeader", Cache.selectedDay);
+      Pubsub.emit("renderDaysBar");
+      Pubsub.emit("renderGraph", Cache.selectedDay);
     });
     this.divF.addEventListener("click", () => {
       this.divC.classList.remove("selected");
       this.divF.classList.add("selected");
-      Cache.units = "imperial";
+      Cache.tempUnits = "f";
+      Cache.windUnits = "mph";
+      Pubsub.emit("renderHeader", Cache.selectedDay);
+      Pubsub.emit("renderDaysBar");
+      Pubsub.emit("renderGraph", Cache.selectedDay);
     });
   }
 }

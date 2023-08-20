@@ -24,7 +24,7 @@ export default class Graph {
         const hour = new Date(element.time).getHours();
         parsedData.push({
           hour,
-          temp_c: element.temp_c,
+          temp: element[`temp_${Cache.tempUnits}`],
         });
       });
 
@@ -47,15 +47,26 @@ export default class Graph {
     this.cachedChart = new Chart(this.canvas, {
       type: "line",
       data: {
-        labels: data.parsedData.map((row) => row.hour),
+        labels: data.parsedData.map((row) => `${row.hour}:00`),
         datasets: [
           {
-            data: data.parsedData.map((row) => row.temp_c),
+            data: data.parsedData.map((row) => row.temp),
             tension: 0.2,
           },
         ],
       },
       options: {
+        scales: {
+          y: {
+            beginAtZero: false,
+            ticks: {
+              // Add units to y-axis labels
+              callback(value) {
+                return `${value}°`;
+              },
+            },
+          },
+        },
         maintainAspectRatio: false,
         responsive: true,
         plugins: {

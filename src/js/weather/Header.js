@@ -55,17 +55,7 @@ export default class Header {
 
   bindEvents() {
     Pubsub.on("renderHeader", (index) => {
-      // Determine units to use
-      let tempUnit;
-      let windUnit;
-      if (Cache.units === "si") {
-        tempUnit = "c";
-        windUnit = "kph";
-      } else {
-        tempUnit = "f";
-        windUnit = "mph";
-      }
-
+      console.log(Cache.cachedData);
       // This data is accessed the same way irrespective of index
       const { icon } =
         Cache.cachedData.forecast.forecastday[index].day.condition;
@@ -84,28 +74,33 @@ export default class Header {
       const location = `${Cache.cachedData.location.name}, ${Cache.cachedData.location.country}`;
 
       // This data is accessed differently if index === 0
-      let tempC; // TODO im changing units
+      let temp; // TODO im changing units
       let humidity;
-      let windKPH;
+      let wind;
       if (index === 0) {
         // index 0 denotes the Current day, as opposed to a forecasted day
-        tempC = Math.floor(Cache.cachedData.current.temp_c);
+        temp = Math.floor(Cache.cachedData.current[`temp_${Cache.tempUnits}`]);
         humidity = Cache.cachedData.current.humidity;
-        windKPH = Cache.cachedData.current.wind_kph;
+        wind = Cache.cachedData.current[`wind_${Cache.windUnits}`];
       } else {
         // if index !== 0 it must access data from the forcast section
-        tempC = Math.floor(
-          Cache.cachedData.forecast.forecastday[index].day.avgtemp_c,
+        temp = Math.floor(
+          Cache.cachedData.forecast.forecastday[index].day[
+            `avgtemp_${Cache.tempUnits}`
+          ],
         );
         humidity = Cache.cachedData.forecast.forecastday[index].day.avghumidity;
-        windKPH = Cache.cachedData.forecast.forecastday[index].day.maxwind_kph;
+        wind =
+          Cache.cachedData.forecast.forecastday[index].day[
+            `maxwind_${Cache.windUnits}`
+          ];
       }
 
       this.render({
         icon,
-        tempC,
+        temp,
         humidity,
-        windKPH,
+        wind,
         chanceOfRain,
         day,
         condition,
@@ -116,9 +111,9 @@ export default class Header {
 
   render(data) {
     this.imgIcon.src = data.icon;
-    this.divTemperature.innerText = `${data.tempC}°`;
+    this.divTemperature.innerText = `${data.temp}°`;
     this.divHumidity.innerText = `Humidity: ${data.humidity}%`;
-    this.divWindSpeed.innerText = `Wind speed: ${data.windKPH}`;
+    this.divWindSpeed.innerText = `Wind speed: ${data.wind} ${Cache.windUnits}`;
     this.divChanceRain.innerText = `Chance of rain: ${data.chanceOfRain}%`;
     this.divDay.innerText = data.day;
     this.divCondition.innerText = data.condition;

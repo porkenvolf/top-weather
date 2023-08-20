@@ -38,6 +38,6 @@
   font-size: 0.8rem;
   color: var(--textMid);
 }
-.activated {
+#dayContainer.selected {
   background: var(--bgMid);
 }

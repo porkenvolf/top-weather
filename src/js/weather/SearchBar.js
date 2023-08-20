@@ -18,7 +18,7 @@ export default class SearchBar {
   bindEvents() {
     this.searchBar.addEventListener("change", () => {
       Pubsub.emit("apiCall", this.searchBar.value);
-      Pubsub.emit("activateDay", 0);
+      Pubsub.emit("selectedDay", 0);
     });
   }
 }

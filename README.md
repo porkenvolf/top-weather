@@ -2,9 +2,8 @@
 
 TO DO:
 
+- FIX: when changing units as the first action the 'now' line doesnt render
 - callApi every once in a while to refresh the data
-- units F
-- units in graph
 - manage async errors
 - un chancho
 
