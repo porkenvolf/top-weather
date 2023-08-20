@@ -1,6 +1,16 @@
+import Cache from "./Cache";
+
 async function queryLocationAPI() {
   const requestLocation = await fetch("https://ipapi.co/json/");
   const parsedRequest = await requestLocation.json();
+  if (
+    requestLocation.country_code_iso3 === "LBR" ||
+    requestLocation.country_code_iso3 === "MMR" ||
+    requestLocation.country_code_iso3 === "USA"
+  ) {
+    Cache.tempUnits = "f";
+    Cache.windUnits = "mph";
+  }
   return parsedRequest.city;
 }
 export default async function queryWeatherAPI(_location) {

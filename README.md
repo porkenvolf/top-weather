@@ -2,11 +2,11 @@
 
 TO DO:
 
-- FIX: Y axis should only have whole degree ticks
-- callApi every once in a while to refresh the data
 - manage async errors
-- un chancho
+- loading screen while waiting for api
+- callApi every once in a while to refresh the data
+- add more graphs, humidity,rain, whatever, check data available in the api object
 
 MAYBE:
 
-- add more graphs, humidity,rain, whatever, check data available in the api object
+- un chancho

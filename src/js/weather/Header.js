@@ -55,7 +55,6 @@ export default class Header {
 
   bindEvents() {
     Pubsub.on("renderHeader", (index) => {
-      console.log(Cache.cachedData);
       // This data is accessed the same way irrespective of index
       const { icon } =
         Cache.cachedData.forecast.forecastday[index].day.condition;
