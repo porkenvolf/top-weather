@@ -2,7 +2,7 @@ import Pubsub from "../Pubsub";
 import SearchBar from "./SearchBar";
 import UnitSelector from "./UnitSelector";
 import Cache from "./Cache";
-import "../../css/modules/Header.css";
+import "../../css/components/Header.css";
 
 export default class Header {
   constructor() {
@@ -73,7 +73,7 @@ export default class Header {
       const location = `${Cache.cachedData.location.name}, ${Cache.cachedData.location.country}`;
 
       // This data is accessed differently if index === 0
-      let temp; // TODO im changing units
+      let temp;
       let humidity;
       let wind;
       if (index === 0) {

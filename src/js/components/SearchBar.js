@@ -1,4 +1,4 @@
-import "../../css/modules/SearchBar.css";
+import "../../css/components/SearchBar.css";
 import Pubsub from "../Pubsub";
 
 export default class SearchBar {

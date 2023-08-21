@@ -1,5 +1,5 @@
 import imgLoading from "../../img/loading.svg";
-import "../../css/modules/Loading.css";
+import "../../css/components/Loading.css";
 
 export default class Loading {
   constructor() {

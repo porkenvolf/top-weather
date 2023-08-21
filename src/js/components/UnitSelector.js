@@ -1,5 +1,5 @@
 import Cache from "./Cache";
-import "../../css/modules/UnitSelector.css";
+import "../../css/components/UnitSelector.css";
 import Pubsub from "../Pubsub";
 
 export default class UnitSelector {

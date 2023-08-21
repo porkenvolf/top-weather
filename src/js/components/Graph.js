@@ -2,9 +2,9 @@ import Chart from "chart.js/auto";
 // it's already in dependencies, this is weird...
 // eslint-disable-next-line import/no-extraneous-dependencies
 import annotationPlugin from "chartjs-plugin-annotation";
-import Pubsub from "./Pubsub";
-import Cache from "./weather/Cache";
-import "../css/modules/Graph.css";
+import Pubsub from "../Pubsub";
+import Cache from "./Cache";
+import "../../css/components/Graph.css";
 
 export default class Graph {
   constructor() {

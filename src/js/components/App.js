@@ -1,12 +1,12 @@
-import Header from "./weather/Header";
-import DaysBar from "./weather/DaysBar";
-import Loading from "./weather/Loading";
+import Header from "./Header";
+import DaysBar from "./DaysBar";
+import Loading from "./Loading";
 import Graph from "./Graph";
-import queryWeatherAPI from "./weather/API";
-import Pubsub from "./Pubsub";
-import Cache from "./weather/Cache";
+import queryWeatherAPI from "./API";
+import Pubsub from "../Pubsub";
+import Cache from "./Cache";
 import Footer from "./Footer";
-import "../css/modules/App.css";
+import "../../css/components/App.css";
 
 export default class App {
   constructor() {

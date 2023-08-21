@@ -29,9 +29,16 @@ export default class Footer {
     divFooter.style.display = "flex";
     divFooter.style.justifyContent = "center";
     divFooter.style.alignItems = "center";
-    divFooter.style.height = "3rem";
     divFooter.style.color = "grey";
     divFooter.style.fontSize = "0.9rem";
+    divFooter.style.position = "fixed";
+
+    divFooter.style.bottom = "0";
+    divFooter.style.left = "50%";
+    divFooter.style.transform = "translateX(-50%)";
+    divFooter.style.padding = "10px";
+
+    divFooter.querySelector("a").style.color = "grey";
 
     return divFooter;
   }

@@ -1,7 +1,7 @@
 import Pubsub from "../Pubsub";
 import Day from "./Day";
 import Cache from "./Cache";
-import "../../css/modules/DaysBar.css";
+import "../../css/components/DaysBar.css";
 
 export default class DaysBar {
   days = [];
