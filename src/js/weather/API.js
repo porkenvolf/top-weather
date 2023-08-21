@@ -1,3 +1,4 @@
+import Pubsub from "../Pubsub";
 import Cache from "./Cache";
 
 async function queryLocationAPI() {
@@ -14,10 +15,12 @@ async function queryLocationAPI() {
   return parsedRequest.city;
 }
 export default async function queryWeatherAPI(_location) {
-  const location = _location || (await queryLocationAPI());
+  Pubsub.emit("loading");
+  const location = _location || (await queryLocationAPI().catch(console.log));
   const requestWeather =
     await fetch(`https://api.weatherapi.com/v1/forecast.json?key=6b50d5938f0b4173a06202148231208&q=${location}&days=10&aqi=no&alerts=no
     `);
   const data = await requestWeather.json();
+  Pubsub.emit("stopLoading");
   return data;
 }

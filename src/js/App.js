@@ -1,5 +1,6 @@
 import Header from "./weather/Header";
 import DaysBar from "./weather/DaysBar";
+import Loading from "./weather/Loading";
 import Graph from "./Graph";
 import queryWeatherAPI from "./weather/API";
 import Pubsub from "./Pubsub";
@@ -11,7 +12,7 @@ export default class App {
     // DOM
     this.container = document.createElement("div");
     this.container.id = "appContainer";
-
+    this.loading = new Loading();
     this.header = new Header();
     this.graph = new Graph();
     this.daysBar = new DaysBar(8);
@@ -20,22 +21,30 @@ export default class App {
       this.graph.container,
       this.daysBar.container,
     );
-    App.bindEvents();
+    App.bindEvents(this);
     App.apiCall();
   }
 
   static apiCall(location) {
-    queryWeatherAPI(location).then((data) => {
-      Cache.cachedData = data;
-      Pubsub.emit("renderHeader", 0);
-      Pubsub.emit("renderDaysBar");
-      Pubsub.emit("renderGraph", 0);
-    });
+    queryWeatherAPI(location)
+      .then((data) => {
+        Cache.cachedData = data;
+        Pubsub.emit("renderHeader", 0);
+        Pubsub.emit("renderDaysBar");
+        Pubsub.emit("renderGraph", 0);
+      })
+      .catch(console.log);
   }
 
-  static bindEvents() {
+  static bindEvents(instance) {
     Pubsub.on("apiCall", (location) => {
       App.apiCall(location);
+    });
+    Pubsub.on("loading", () => {
+      instance.container.append(instance.loading.container);
+    });
+    Pubsub.on("stopLoading", () => {
+      instance.loading.container.remove();
     });
   }
 }
