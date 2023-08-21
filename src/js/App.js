@@ -5,6 +5,7 @@ import Graph from "./Graph";
 import queryWeatherAPI from "./weather/API";
 import Pubsub from "./Pubsub";
 import Cache from "./weather/Cache";
+import Footer from "./Footer";
 import "../css/modules/App.css";
 
 export default class App {
@@ -16,10 +17,12 @@ export default class App {
     this.header = new Header();
     this.graph = new Graph();
     this.daysBar = new DaysBar(8);
+    this.footer = new Footer(2023);
     this.container.append(
       this.header.container,
       this.graph.container,
       this.daysBar.container,
+      this.footer.output,
     );
     App.bindEvents(this);
     App.apiCall();

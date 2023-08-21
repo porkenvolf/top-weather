@@ -30,6 +30,8 @@ export default class Footer {
     divFooter.style.justifyContent = "center";
     divFooter.style.alignItems = "center";
     divFooter.style.height = "3rem";
+    divFooter.style.color = "grey";
+    divFooter.style.fontSize = "0.9rem";
 
     return divFooter;
   }
