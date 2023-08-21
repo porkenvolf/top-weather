@@ -6,3 +6,18 @@
   color: var(--textDark);
   font-size: 0.8rem;
 }
+#graphContainer #btnBar {
+  display: flex;
+  gap: 15px;
+}
+#graphContainer #btnBar div {
+  cursor: pointer;
+}
+#graphContainer #btnTemp.selected {
+  border-bottom: 3px solid #1a83dd;
+  color: var(--textLight);
+}
+#graphContainer #btnRain.selected {
+  border-bottom: 3px solid #dd1a79;
+  color: var(--textLight);
+}
