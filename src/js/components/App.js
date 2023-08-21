@@ -6,6 +6,7 @@ import queryWeatherAPI from "./API";
 import Pubsub from "../Pubsub";
 import Cache from "./Cache";
 import Footer from "./Footer";
+import Title from "./Title";
 import "../../css/components/App.css";
 
 export default class App {
@@ -14,11 +15,13 @@ export default class App {
     this.container = document.createElement("div");
     this.container.id = "appContainer";
     this.loading = new Loading();
+    this.title = new Title();
     this.header = new Header();
     this.graph = new Graph();
     this.daysBar = new DaysBar(8);
     this.footer = new Footer(2023);
     this.container.append(
+      this.title.container,
       this.header.container,
       this.graph.container,
       this.daysBar.container,
