@@ -29,7 +29,6 @@ export default class DaysBar {
       this.days[index].container.classList.add("selected");
 
       Cache.selectedDay = index;
-      console.log(Cache.selectedDay);
     });
     Pubsub.on("renderDaysBar", () => {
       this.render(Cache.cachedData);

@@ -11,6 +11,10 @@ export default class Graph {
     Chart.register(annotationPlugin);
     this.container = document.createElement("div");
     this.container.id = "graphContainer";
+    this.btnTemp = document.createElement("div");
+    this.btnTemp.innerText = "Temperature";
+
+    this.container.append(this.btnTemp);
     this.bindEvents();
   }
 

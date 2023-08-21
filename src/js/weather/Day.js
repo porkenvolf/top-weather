@@ -54,6 +54,7 @@ export default class Day {
     this.container.addEventListener("click", () => {
       Pubsub.emit("renderHeader", this.index);
       Pubsub.emit("renderGraph", this.index);
+      Pubsub.emit("renderHourly", this.index);
       Pubsub.emit("selectedDay", this.index);
     });
   }

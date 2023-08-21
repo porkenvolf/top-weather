@@ -1,6 +1,7 @@
 @import url("../variables.css");
 
 #container {
+  margin: 10px 0;
   display: flex;
   gap: 10px;
   scroll-margin: 20px;

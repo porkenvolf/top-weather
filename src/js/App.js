@@ -32,6 +32,7 @@ export default class App {
         Pubsub.emit("renderHeader", 0);
         Pubsub.emit("renderDaysBar");
         Pubsub.emit("renderGraph", 0);
+        Pubsub.emit("renderHourly", 0);
       })
       .catch(console.log);
   }

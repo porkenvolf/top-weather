@@ -1,0 +1,8 @@
+#hourlyContainer {
+  display: flex;
+  max-width: 100%;
+}
+#hourlyContainer img {
+  flex: 1 1 0;
+  width: 1rem;
+}
